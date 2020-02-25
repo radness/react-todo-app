@@ -1,15 +1,23 @@
 import React from 'react';
 
-import { MdCheckBoxOutlineBlank, MdRemoveCircleOutline } from 'react-icons/md';
+import {
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdRemoveCircleOutline,
+} from 'react-icons/md';
+import cn from 'classnames';
 
 import './TodoListItem.scss';
 
-const TodoListItem = () => {
+const TodoListItem = ({ todo }) => {
+  const { text, checked } = todo;
+
   return (
     <div className="TodoListItem">
-      <div className="checkbox">
-        <MdCheckBoxOutlineBlank />
-        <div className="text">Todo</div>
+      <div className={cn('checkbox', { checked })}>
+        {/* TodoListItem 컴포넌트에서 받아온 todo 값에 따라 UI를 보여준다. */}
+        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+        <div className="text">{text}}</div>
       </div>
       <div className="remove">
         <MdRemoveCircleOutline />
