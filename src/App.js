@@ -34,10 +34,25 @@ const App = () => {
     },
     [todos],
   );
+
+  // 배열 내장 함수 filter
+  // filter 함수는 기존의 배열은 그대로 둔 상태에서 특정 조건을 만족하는 원소들만
+  // 따로 추출하여 새로운 배열을 만들어줍니다.
+  // const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // const biggerThanFive = array.filter(number => number > 5);
+  // console.log(biggerThanFive);
+
+  const onRemove = useCallback(
+    id => {
+      setTodos(todos.filter(todo => todo.id !== id));
+    },
+    [todos],
+  );
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onRemove={onRemove} />
     </TodoTemplate>
   );
 };
