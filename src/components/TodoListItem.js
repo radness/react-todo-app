@@ -8,12 +8,12 @@ import cn from 'classnames';
 
 import './TodoListItem.scss';
 
-const TodoListItem = ({ todo, onRemove }) => {
+const TodoListItem = ({ todo, onRemove, onToggle }) => {
   const { id, text, checked } = todo;
 
   return (
     <div className="TodoListItem">
-      <div className={cn('checkbox', { checked })}>
+      <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
         {/* TodoListItem 컴포넌트에서 받아온 todo 값에 따라 UI를 보여준다. */}
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div className="text">{text}}</div>

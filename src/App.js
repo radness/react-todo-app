@@ -49,10 +49,23 @@ const App = () => {
     [todos],
   );
 
+  const onToggle = useCallback(
+    id => {
+      setTodos(
+        // 배열의 내장함수 map을 사용하여 특정 id를 가지고 있는 객체의 checked값을 반전시켜줍니다.
+        // 불변성을 유지하면서 특정 배열 원소를 업데이트 해야할 때 map을 사용하면 쉽게 작성할 수 있습니다.
+        todos.map(todo =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        ),
+      );
+    },
+    [todos],
+  );
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
 };
