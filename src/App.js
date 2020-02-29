@@ -28,7 +28,11 @@ const App = () => {
   const nextId = useRef(2501);
 
   const onInsert = useCallback(text => {
-    const todo = { id: nextId.current, text, checked: false };
+    const todo = {
+      id: nextId.current,
+      text,
+      checked: false,
+    };
     setTodos(todos => todos.concat(todo));
     nextId.current += 1; // nexId에 1씩 더해준다.
   }, []);
